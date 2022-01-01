@@ -5,3 +5,5 @@ library and features like sockets, goroutines, channels
 and sync package.
 
 In development...
+
+![Alt Text](./images/show.gif)
