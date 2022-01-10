@@ -12,8 +12,6 @@ import (
 	"os"
 )
 
-const clearCurrentLinePattern = "\\33[2K\r"
-
 type ConnectedUser struct {
 	toUser      string
 	currentUser *dto.UserDto
@@ -67,11 +65,7 @@ func (usr *ConnectedUser) executeInputCommand(msgDiscovery discovery.MessageDisc
 			break
 		case discovery.MessageDiscoveryTypeDefineSender:
 			usr.toUser = msg.Value.(string)
-			if usr.toUser == "" {
-				fmt.Println("**Defined messages for all")
-			} else {
-				fmt.Println("**Defined messages to: " + usr.toUser)
-			}
+			printDefinedUser(usr.toUser)
 			break
 		case discovery.MessageDiscoveryTypeHelpCommand:
 			PrintHelp()

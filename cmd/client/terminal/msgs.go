@@ -5,11 +5,20 @@ import (
 	"gophertalk/internal/dto"
 )
 
+const clearCurrentLinePattern = "\\33[2K\r"
+
 func printYourTime(to string) {
 	if to == "" {
 		to = "all"
 	}
 	fmt.Print(fmt.Sprintf("(type for %s):", to))
+}
+
+func printDefinedUser(to string) {
+	if to == "" {
+		to = "all"
+	}
+	fmt.Println(fmt.Sprintf("**Defined messages for %s", to))
 }
 
 func PrintHelp() {
