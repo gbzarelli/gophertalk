@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"gophertalk/internal/conv"
 	"gophertalk/internal/dto"
 	"net"
 )
@@ -35,8 +36,7 @@ func (c *Client) NewMessageFromServer(msg string) error {
 }
 
 func (c *Client) NewMessage(msg dto.MessageDto) error {
-	buffer, _ := json.Marshal(msg)
-	_, err := c.conn.Write(append(buffer, '\n'))
+	err := conv.MarshalAndWrite(c.conn, msg)
 	if err != nil {
 		return err
 	}
