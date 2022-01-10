@@ -3,9 +3,10 @@ package terminal
 import (
 	"fmt"
 	"gophertalk/internal/dto"
+	"strings"
 )
 
-const clearCurrentLinePattern = "\\33[2K\r"
+const clearCurrentLinePattern = "\r"
 
 func printYourTime(to string) {
 	if to == "" {
@@ -30,7 +31,20 @@ func PrintHelp() {
 	fmt.Println("---------------------------------------------------")
 }
 
-func printNewMessage(obj dto.MessageDto) {
+func PrintNewReceivedMessage(obj dto.MessageDto) {
+	if obj.Type == dto.MessageDtoTypeListUsers {
+		printListOfUsers(obj)
+	} else {
+		printMessage(obj)
+	}
+}
+
+func printListOfUsers(obj dto.MessageDto) {
+	fmt.Println(clearCurrentLinePattern, "Users online:")
+	fmt.Println(" ->", strings.Join(obj.Users, "\n -> "))
+}
+
+func printMessage(obj dto.MessageDto) {
 	var to string
 	if obj.To == "" {
 		to = "for all"

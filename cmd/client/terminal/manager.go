@@ -92,7 +92,7 @@ func (usr *ConnectedUser) StartReadMessages() {
 	if err != nil {
 		fmt.Println(clearCurrentLinePattern, "***Error to unmarshal message from server***")
 	} else {
-		printNewMessage(obj)
+		PrintNewReceivedMessage(obj)
 	}
 
 	printYourTime(usr.toUser)

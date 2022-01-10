@@ -39,6 +39,22 @@ func (s *DefaultManager) SendMessage(dto dto.MessageDto) {
 	}
 }
 
+func (s *DefaultManager) SendListOfUsers(client *Client) {
+	usersOnline := *new([]string)
+	s.clients.Range(func(key, value interface{}) bool {
+		usersOnline = append(usersOnline, key.(string))
+		return true
+	})
+
+	s.sendMessageTo(dto.MessageDto{
+		Type:  dto.MessageDtoTypeListUsers,
+		To:    client.ClientId,
+		From:  "<server>",
+		Msg:   "",
+		Users: usersOnline,
+	}, client)
+}
+
 func (s *DefaultManager) sendMessageTo(dto dto.MessageDto, client *Client) {
 	err := client.NewMessage(dto)
 	if err != nil {

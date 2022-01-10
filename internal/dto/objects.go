@@ -10,10 +10,11 @@ type UserDto struct {
 }
 
 type MessageDto struct {
-	Type string `json:"type"`
-	To   string `json:"to"`
-	From string `json:"from"`
-	Msg  string `json:"msg"`
+	Type  string   `json:"type"`
+	To    string   `json:"to"`
+	From  string   `json:"from"`
+	Msg   string   `json:"msg"`
+	Users []string `json:"users"`
 }
 
 func NewMessageDto(to string, from string, msg string) MessageDto {

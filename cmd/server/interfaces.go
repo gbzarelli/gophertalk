@@ -10,4 +10,5 @@ type Manager interface {
 	Remove(client *Client, msg string)
 	SendMessage(dto dto.MessageDto)
 	GetAll() *sync.Map
+	SendListOfUsers(client *Client)
 }

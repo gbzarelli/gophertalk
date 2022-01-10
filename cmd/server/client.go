@@ -45,6 +45,7 @@ func (c *Client) NewMessage(msg dto.MessageDto) error {
 
 func (c *Client) StartReadMessages(abortChannel chan *Client, manager Manager) {
 	buffer, err := bufio.NewReader(c.conn).ReadBytes('\n')
+
 	if err != nil {
 		abortChannel <- c
 		return
@@ -52,10 +53,18 @@ func (c *Client) StartReadMessages(abortChannel chan *Client, manager Manager) {
 
 	messageDto := dto.MessageDto{}
 	err = json.Unmarshal(buffer[:len(buffer)-1], &messageDto)
-	if err != nil {
-		_ = c.NewMessageFromServer("Payload invalid")
+
+	if err == nil {
+		switch messageDto.Type {
+		case dto.MessageDtoTypeSendMessage:
+			go manager.SendMessage(messageDto)
+			break
+		case dto.MessageDtoTypeListUsers:
+			go manager.SendListOfUsers(c)
+		}
+
 	} else {
-		go manager.SendMessage(messageDto)
+		_ = c.NewMessageFromServer("Payload invalid")
 	}
 
 	c.StartReadMessages(abortChannel, manager)
