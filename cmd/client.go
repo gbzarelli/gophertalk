@@ -1,16 +1,17 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"gophertalk/cmd/client/terminal"
 	discovery2 "gophertalk/cmd/client/terminal/input/discovery"
+	"gophertalk/internal/conv"
+	"log"
 	"net"
 	"os"
 )
 
 const (
-	connHostClient = "localhost"
-	connPortClient = "8080"
 	connTypeClient = "tcp"
 )
 
@@ -30,8 +31,16 @@ func main() {
 }
 
 func connectToServer() net.Conn {
-	fmt.Println("Connecting to " + connTypeClient + " server " + connHostClient + ":" + connPortClient)
-	conn, err := net.Dial(connTypeClient, connHostClient+":"+connPortClient)
+	fmt.Println("Type the address server (Ex: 'localhost:8080'): ")
+	reader := bufio.NewReader(os.Stdin)
+	bytes, err := reader.ReadBytes('\n')
+	if err != nil {
+		log.Fatal(err)
+	}
+	server := conv.BytesToStringWithoutDelim(bytes)
+
+	fmt.Println("Connecting to " + connTypeClient + " server " + server)
+	conn, err := net.Dial(connTypeClient, server)
 	if err != nil {
 		fmt.Println("Error connecting:", err.Error())
 		os.Exit(1)
