@@ -24,9 +24,10 @@ Was use pure Socket channel to accept new clients. No specific protocol was used
 
 ### Client
 
-The client just connect in the server and login with a uniq username, there is no autentication. If the username was exists in the server, its reject and asked to reconnect.
+The client just connect in the server (informed when start) and login with an uniq username, there is no authentication. 
+If the username was exists in the server, its reject and asked to reconnect.
 
-The client can talk with all people in the server or a specific
+The client can talk with all people in the server or a specific user defined by command
 
 #### Commands:
 
@@ -35,6 +36,24 @@ The client can talk with all people in the server or a specific
 - `/to {user}`    : to define the user to send the message
 - `/all`          : to define all people to send the message
 
-# Running
+# Run
 
-In development...
+Build the project
+
+```shell
+>make build
+```
+
+Run the server at port 8080:
+
+```shell
+>make run-server
+```
+
+Run client:
+
+```shell
+>make run-client
+```
+
+Enjoy!
