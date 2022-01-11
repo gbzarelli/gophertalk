@@ -66,8 +66,8 @@ Pull Requests are welcome. For important changes, open an 'issue' first to discu
 
 Guilherme Biff Zarelli
 
-Blog/Site - https://helpdev.com.br
-LinkedIn - https://linkedin.com/in/gbzarelli/
-GitHub - https://github.com/gbzarelli
-Medium - https://medium.com/@guilherme.zarelli
-Email - gbzarelli@helpdev.com.br
+- Blog/Site - https://helpdev.com.br
+- LinkedIn - https://linkedin.com/in/gbzarelli/
+- GitHub - https://github.com/gbzarelli
+- Medium - https://medium.com/@guilherme.zarelli
+- Email - gbzarelli@helpdev.com.br
