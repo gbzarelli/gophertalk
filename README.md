@@ -57,3 +57,17 @@ Run client:
 ```
 
 Enjoy!
+
+# Contribute
+
+Pull Requests are welcome. For important changes, open an 'issue' first to discuss what you would like to change. Be sure to update tests as appropriate.
+
+# Developer
+
+Guilherme Biff Zarelli
+
+Blog/Site - https://helpdev.com.br
+LinkedIn - https://linkedin.com/in/gbzarelli/
+GitHub - https://github.com/gbzarelli
+Medium - https://medium.com/@guilherme.zarelli
+Email - gbzarelli@helpdev.com.br
